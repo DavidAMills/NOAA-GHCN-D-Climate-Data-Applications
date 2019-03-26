@@ -2,6 +2,7 @@
 # Script by David Mills
 # dam203@txstate.edu
 # Last Updated: March 26, 2019
+# No local data files are needed for this script to run.
 
 library(httr)
 library(jsonlite)
