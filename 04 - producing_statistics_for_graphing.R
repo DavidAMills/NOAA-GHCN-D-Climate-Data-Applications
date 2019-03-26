@@ -36,19 +36,22 @@ for(i in elements)
   Distribution$Stations_Sum <- as.data.frame(colSums(Stations[ , 10:paste0(lastyear-startyear+10), drop = FALSE]))
   Distribution$Stations_Means <- as.data.frame(colMeans(Stations[ , 10:paste0(lastyear-startyear+10), drop = FALSE]))
   Distribution$Stations_Medians <- as.data.frame(colMedians(as.matrix(Stations[ , 10:paste0(lastyear-startyear+10), drop = FALSE])))
+  Distribution$Stations_Counts <- as.data.frame(colSums(Stations[ , 10:paste0(lastyear-startyear+10), drop = FALSE] > 0))
   Distribution <- as.data.frame(Distribution)
-  names(Distribution) <- c("Year","Sums","Means","Medians")
+  names(Distribution) <- c("Year","Sums","Means","Medians", "Counts")
   Distribution$Year <- substring(Distribution$Year, 2)
   
   # Creates the name for a variable to hold the sums, means, and medians for aggregation.
   SUMSnam <- paste0(element,"sums")
   MEANSnam <- paste0(element,"means")
   MEDIANSnam <- paste0(element,"medians")
+  COUNTSnam <- paste0(element,"counts")
   
   # Stores the sums, means, and medians data in the variable.
   assign(SUMSnam,Distribution$Sums)
   assign(MEANSnam,Distribution$Means)
   assign(MEDIANSnam,Distribution$Medians)
+  assign(COUNTSnam,Distribution$Counts)
   }
 
 # Bring all of the data together into a single dataframe.
@@ -74,6 +77,13 @@ graphdata$SNWDmedians <- as.data.frame(SNWDmedians)
 graphdata$SNOWmedians <- as.data.frame(SNOWmedians)
 graphdata$TOBSmedians <- as.data.frame(TOBSmedians)
 graphdata$TAVGmedians <- as.data.frame(TAVGmedians)
+graphdata$PRCPcounts <- as.data.frame(PRCPcounts)
+graphdata$TMAXcounts <- as.data.frame(TMAXcounts)
+graphdata$TMINcounts <- as.data.frame(TMINcounts)
+graphdata$SNWDcounts <- as.data.frame(SNWDcounts)
+graphdata$SNOWcounts <- as.data.frame(SNOWcounts)
+graphdata$TOBScounts <- as.data.frame(TOBScounts)
+graphdata$TAVGcounts <- as.data.frame(TAVGcounts)
 graphdata <- as.data.frame(graphdata)
 rownames(graphdata) <- Distribution$Year
 
