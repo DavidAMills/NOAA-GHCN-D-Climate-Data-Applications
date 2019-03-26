@@ -79,4 +79,4 @@ while(nrow(df_temp) == limit)
 listofdf <- lapply(paste0("df_", 1:i), function(df) get(df))
 df_combined <- do.call(rbind, listofdf)
 
-write.csv(df_combined,"initial_weather_stations.csv", row.names=FALSE)
+write.csv(df_combined,"data/initial_weather_stations.csv", row.names=FALSE)
