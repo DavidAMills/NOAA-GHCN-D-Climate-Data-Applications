@@ -25,7 +25,7 @@ offset = limit + 1
 startyear = 1000
 endyear = 2018
 
-# Fetch all available stations in Texas - https://www.ncdc.noaa.gov/cdo-web/webservices/v2
+# Fetch all available stations. - https://www.ncdc.noaa.gov/cdo-web/webservices/v2
 source <- paste0("https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?limit=",limit,"&startdate=",startyear,"-01-01&enddate=",endyear,"-12-31") 
 
 # Runs GET to get the records requested.
