@@ -27,19 +27,27 @@ for(element in elements)
   # Remove all of the "X" characters from the column names for the years.
   names(Stations)[10:265] <- gsub("[^0-9\\.]", "", colnames(Stations[10:265]))
   
+  # Create empty variables for storage of the year and 
+  # the count of stations with more than 30 years of data per year.
   year <- NULL
   morethanthirty <- NULL
 
+  # For loop that runs through every column (year)
   for(i in 1:256)
     {
+    # i + 9 to start at column 10, the first year.
     i <- i + 9
+    # Grabs the column name and stores it as the year.
     year[i-9] <- colnames(Stations[i])
+    # Adds every station in each year with greater than or equal to 30 years of consecutive data.
     morethanthirty[i-9] <- sum(Stations[i] >= 30)
     }
 
-  # Creates an empty variable for combining output.
+  # Create teh dataframe starting with the year variable.
   YearlyGreaterThanThirty <- as.data.frame(year)
+  # Add the counts column.
   YearlyGreaterThanThirty$Count <- morethanthirty
 
+  # Write the CSV for each element.
   write.csv(YearlyGreaterThanThirty,paste0("data/Stations_Thirty_",element,".csv"))
 }
