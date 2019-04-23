@@ -67,14 +67,15 @@ for(element in elements)
     
     # Creates a Names dataframe with the Names, then adds the Latitude and Longitudes.
     Names_Loc <- as.data.frame(Names)
-    Names_Loc$Latitude <- as.data.frame(Latitude)
-    Names_Loc$Longitude <- as.data.frame(Longitude)
+    Names_Loc$Names <- as.character(Names)
+    Names_Loc$Latitude <- Latitude
+    Names_Loc$Longitude <- Longitude
     
     # If there is at least 1 stations with 30+ years of consecutive data.
     if(nrow(Names_Loc) >= 1)
       {
       # Write CSV Files for permanently storing the formatted data.
-      write.csv(Names_Loc,paste0("data/",element,"_ClimateStudyStations_",year[i-9],".csv"))
+      write.csv(Names_Loc,paste0("data/Stations_ClimateReady_",element,"_",year[i-9],".csv"))
       
       # Reset Names_Loc dataframe back to zero.
       Names_Loc <- NULL
