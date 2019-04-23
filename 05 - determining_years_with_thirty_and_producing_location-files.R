@@ -57,9 +57,9 @@ for(element in elements)
       if(Stations[x,i] >= 30)
       {
         # If it is, stores the Name, Longitude, and Latitude.
-        Names[z] <- as.character(Stations$name[i])
-        Longitude[z] <- as.character(Stations$longitude[i])
-        Latitude[z] <- as.character(Stations$latitude[i])
+        Names[z] <- as.character(Stations$name[x])
+        Longitude[z] <- as.character(Stations$longitude[x])
+        Latitude[z] <- as.character(Stations$latitude[x])
         # z + 1 to go to the next row in case there are more stations with 30+ years.
         z <- z + 1
       }
@@ -75,7 +75,7 @@ for(element in elements)
     if(nrow(Names_Loc) >= 1)
       {
       # Write CSV Files for permanently storing the formatted data.
-      write.csv(Names_Loc,paste0("data/Stations_ClimateReady_",element,"_",year[i-9],".csv"))
+      write.csv(Names_Loc,paste0("data/ClimateReady/Stations_ClimateReady_",element,"_",year[i-9],".csv"), row.names = FALSE)
       
       # Reset Names_Loc dataframe back to zero.
       Names_Loc <- NULL
@@ -87,5 +87,5 @@ for(element in elements)
   YearlyGreaterThanThirty$Count <- morethanthirty
 
   # Write the CSV for each element.
-  write.csv(YearlyGreaterThanThirty,paste0("data/Stations_Thirty_",element,".csv"))
+  write.csv(YearlyGreaterThanThirty,paste0("data/Stations_Thirty_",element,".csv"), row.names = FALSE)
   }
